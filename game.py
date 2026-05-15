@@ -10,7 +10,7 @@ import sys
 class Card:
     def __init__(self, shape_id, rect):
         self.shape_id = shape_id
-        self.color = SHAPE_PALETTES[shape_id % len(SHAPE_PALETTES)]
+        self.color = None
 
         self.rect = pygame.Rect(rect)
 
@@ -96,7 +96,7 @@ class Card:
                 self.shape_id,
                 draw_rect.centerx,
                 draw_rect.centery,
-                int(min(draw_rect.width, draw_rect.height) * 0.5),
+                int(min(draw_rect.width, draw_rect.height) * 0.72),
                 self.color
             )
 
@@ -197,6 +197,7 @@ class InputField:
 
 class MemoryScramble:
     def __init__(self):
+        self.error_message = ""
         pygame.init()
 
         self.screen = pygame.display.set_mode((SCREEN_W, SCREEN_H))
@@ -211,6 +212,21 @@ class MemoryScramble:
         self.font_small = pygame.font.SysFont("Segoe UI", 16)
 
         self.state = "menu"
+
+        self.cards = []
+
+        self.locked = False
+        self.lock_timer = 0
+
+        self.selected = []
+
+        self.moves = 0
+        self.matches = 0
+
+        self.time_left = 0
+        self.timeout = 60
+
+        self.last_tick = time.time()
 
         self.build_menu()
 
@@ -251,30 +267,40 @@ class MemoryScramble:
         )
 
     def setup_board(self):
+
         self.rows = self.rows_input.get_int()
         self.cols = self.cols_input.get_int()
 
         if (self.rows * self.cols) % 2 != 0:
             self.cols += 1
 
+        total = self.rows * self.cols
+
+        MAX_CARDS = 16
+
+        if total > MAX_CARDS:
+            self.error_message = "Maximum board size is 4x4 (16 cards)"
+            return
+
+        self.error_message = ""
+
         self.timeout = self.time_input.get_int()
         self.time_left = float(self.timeout)
 
-        total = self.rows * self.cols
         pairs = total // 2
 
         ids = list(range(pairs)) * 2
 
         random.shuffle(ids)
 
-        pad = 10
+        pad = 18
         top = 100
 
         available_w = SCREEN_W - (pad * (self.cols + 1))
         available_h = SCREEN_H - top - (pad * (self.rows + 1))
 
-        cw = available_w // self.cols
-        ch = available_h // self.rows
+        cw = int((available_w // self.cols) * 0.88)
+        ch = int((available_h // self.rows) * 0.88)
 
         self.cards = []
 
@@ -416,6 +442,18 @@ class MemoryScramble:
         pygame.display.flip()
 
     def draw_menu(self):
+
+        if self.error_message:
+            error = self.font_small.render(
+                self.error_message,
+                True,
+                (255, 80, 120)
+            )
+
+            self.screen.blit(
+                error,
+                error.get_rect(center=(SCREEN_W // 2, 540))
+            )
         title = self.font_title.render(
             "Memory Scramble",
             True,
