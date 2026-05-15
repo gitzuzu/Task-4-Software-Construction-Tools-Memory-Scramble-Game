@@ -341,9 +341,12 @@ class MemoryScramble:
             self.rows_input.handle_event(event)
             self.cols_input.handle_event(event)
             self.time_input.handle_event(event)
+            
+        if self.start_btn.handle_event(event):
 
-            if self.start_btn.handle_event(event):
-                self.setup_board()
+            self.setup_board()
+
+            if self.error_message == "":
                 self.state = "playing"
 
         elif self.state == "playing":
