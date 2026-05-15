@@ -2,8 +2,9 @@
 
 This repository contains the implementation of a configurable Memory Scramble Game developed for the Software Construction Tools course.
 
-The game challenges players to uncover matching card pairs before the countdown timer expires.
-Players can customize the board dimensions and game duration before starting each session.
+The game challenges players to uncover matching card pairs before the countdown timer expires. Players can customize the board dimensions and game duration before starting each session.
+
+The project was developed using Python and Pygame with a modern pastel-themed user interface and animated card interactions.
 
 ---
 
@@ -17,30 +18,34 @@ Players can customize the board dimensions and game duration before starting eac
 
 Before running the project, make sure the following are installed:
 
-- A modern web browser (Chrome, Edge, Firefox, etc.)
-- Visual Studio Code or any code editor (optional)
+- Python 3.10 or higher
+- Pygame library
 
-No additional libraries or frameworks are required.
+Install Pygame using:
+
+```bash
+pip install pygame
+```
 
 ---
 
 ## Running the Game
 
-1. Download or clone the repository:
+1. Clone or download the repository:
 
 ```bash
-git clone https://github.com/your-username/memory-scramble-game.git
+git clone https://github.com/gitzuzu/Task-4-Software-Construction-Tools-Memory-Scramble-Game.git
 ```
 
 2. Open the project folder.
 
-3. Launch the game by opening:
+3. Run the game using:
 
-```text
-index.html
+```bash
+python game.py
 ```
 
-The game will start directly in the browser.
+The game window will launch automatically.
 
 ---
 
@@ -48,7 +53,7 @@ The game will start directly in the browser.
 
 ### Step 1 — Configure the Game
 
-Before starting, the player can select:
+Before starting, the player can configure:
 
 - Number of rows
 - Number of columns
@@ -60,11 +65,11 @@ The game automatically ensures that the total number of cards is even so every c
 
 ### Step 2 — Start Playing
 
-After pressing the Start button:
+After pressing the Start Game button:
 
 - Cards are shuffled randomly
-- All cards are placed face-down
-- The countdown timer begins immediately
+- All cards appear face-down
+- The countdown timer starts immediately
 
 ---
 
@@ -77,14 +82,14 @@ If the cards match:
 - They remain face-up
 
 If the cards do not match:
-- They flip back face-down after a short delay
+- They flip back after a short delay
 
 ---
 
 ### Step 4 — Win or Lose
 
-- Match all pairs before the timer ends to win
-- If time reaches zero before matching all cards, the game displays a Game Over message
+- Match all pairs before the timer reaches zero to win
+- If the timer reaches zero before all matches are found, the game displays a Game Over screen
 
 ---
 
@@ -92,20 +97,21 @@ If the cards do not match:
 
 - Fully configurable board size
 - Adjustable countdown timer
-- Random card shuffling every game
-- Interactive card flipping system
-- Match detection logic
-- Win and Game Over screens
-- Responsive user interface
-- Smooth and simple gameplay experience
+- Randomized card placement every game
+- Animated card flip effect
+- Match detection system
+- Win and Game Over states
+- Restart button
+- Modern pastel pink themed UI
+- Hover animation and card shadows
+- Responsive card layout
 
 ---
 
 ## Technologies Used
 
-- HTML
-- CSS
-- JavaScript
+- Python
+- Pygame
 - Git & GitHub
 
 ---
@@ -115,11 +121,8 @@ If the cards do not match:
 ```text
 memory-scramble-game/
 │
-├── index.html
-├── style.css
-├── script.js
-├── assets/
-│   └── icons/
+├── game.py
+├── ui.py
 ├── README.md
 └── .gitignore
 ```
@@ -128,10 +131,10 @@ memory-scramble-game/
 
 ## Repository Link
 
-Replace the link below with your public GitHub repository:
+
 
 ```text
-https://github.com/your-username/memory-scramble-game
+https://github.com/gitzuzu/Task-4-Software-Construction-Tools-Memory-Scramble-Game
 ```
 
 ---
@@ -140,4 +143,5 @@ https://github.com/your-username/memory-scramble-game
 
 - The project was developed using GitHub for version control and collaboration.
 - Multiple commits were made throughout development to properly track project progress.
-- The implementation focuses on simplicity, usability, and clean game interaction.
+- The implementation focuses on clean UI design, smooth gameplay, and maintainable code structure.
+- The project separates gameplay logic and UI styling into different files for better organization.
