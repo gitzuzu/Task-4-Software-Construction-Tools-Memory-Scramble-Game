@@ -337,19 +337,22 @@ class MemoryScramble:
             self.draw()
 
     def handle_event(self, event):
+
         if self.state == "menu":
+
             self.rows_input.handle_event(event)
             self.cols_input.handle_event(event)
             self.time_input.handle_event(event)
-            
-        if self.start_btn.handle_event(event):
 
-            self.setup_board()
+            if self.start_btn.handle_event(event):
 
-            if self.error_message == "":
-                self.state = "playing"
+                self.setup_board()
+
+                if self.error_message == "":
+                    self.state = "playing"
 
         elif self.state == "playing":
+
             if self.restart_btn.handle_event(event):
                 self.state = "menu"
 
