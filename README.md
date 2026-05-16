@@ -11,7 +11,6 @@ The project was developed using Python and Pygame with a modern pastel-themed us
 ## 👩‍💻 Developers
 
 - Zeina Hesham — 11422025440337
-- Maria Mohsen — 11
 
 ---
 
